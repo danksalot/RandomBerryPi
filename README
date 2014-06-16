@@ -1,0 +1,14 @@
+RandomBerryPi
+AKA Jacob Danks
+
+This is the program that is posting to Twitter as @RandomBerryPi.  It uses Python to choose a random number, perform a virtual coin flip, and choose when it will post next.
+
+The range for the random number is 10,000,000 - 99,999,999.  The coin flip can be heads or tails.  The next update can be anywhere from one minute to 23 hours and 59 minutes.
+
+The program posts these to Twitter then waits the decided amount of time before running again.
+
+The program is run by designating the Twitter account details in the RandomTweet.py file and running it via the command line.  In order to keep the program running after the terminal window is closed, use the nohup command:
+
+nohup python RandomTweet.py $
+
+The $ symbol is required to be used on the end of this command.
