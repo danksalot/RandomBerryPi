@@ -39,5 +39,8 @@ while True:
 	Status += '. Have a random day!'
 
 	print Status
-	twitter.update_status(status=Status)
-	time.sleep(delay)
+	try:
+		twitter.update_status(status=Status)
+		time.sleep(delay)
+	except:
+		print 'An unexpected error occurred.  Trying again...'
