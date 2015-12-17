@@ -1,5 +1,5 @@
-RandomBerryPi
-AKA Danksalot
+# RandomBerryPi
+My Raspberry Pi likes to pick (pseudo)random things, so I've built a couple of programs that allow it to do just that.  I setup a Twitter account [@RandomBerryPi](https://twitter.com/RandomBerryPi) so that it can share everything it does with the world.  Enjoy!
 
 # RandomTweet
 RandomTweet.py is a program that is posting to Twitter as @RandomBerryPi.  It uses Python to choose a random number, perform a virtual coin flip, and choose when it will post next.
