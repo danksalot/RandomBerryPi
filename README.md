@@ -1,5 +1,5 @@
 RandomBerryPi
-AKA Jacob Danks
+AKA Danksalot
 
 # RandomTweet
 RandomTweet.py is a program that is posting to Twitter as @RandomBerryPi.  It uses Python to choose a random number, perform a virtual coin flip, and choose when it will post next.
