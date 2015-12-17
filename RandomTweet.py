@@ -12,7 +12,7 @@ twitter = Twython(APP_KEY, APP_SECRET, OAUTH_KEY, OAUTH_SECRET)
 sides=['heads','tails']
 
 while True:
-	number=random.randint(1,100000000)
+	number=random.randint(10000000, 100000000)
 	delay = random.randint(60, 86399)
 	delay = delay - (delay % 60)
 	hours = delay / 3600
