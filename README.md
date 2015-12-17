@@ -14,7 +14,7 @@ The program is run by designating the Twitter account details in the RandomTweet
 
 nohup python RandomTweet.py $
 
-The $ symbol is required to be used on the end of this command.
+The $ symbol is required to be used on the end of this command so that it will continue to run in the background after the terminal window is closed.
 
 #RandomPowerball
 RandomPowerball.py is a program that is posting to Twitter as @RandomBerryPi.  It uses Python to choose random lottery numbers for the Powerball lottery.  It then checks if the last numbers it picked were winners or not and posts to Twitter.
