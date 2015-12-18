@@ -20,7 +20,7 @@ nohup python RandomTweet.py $
 
 The $ symbol is required to be used on the end of this command so that it will continue to run in the background after the terminal window is closed.
 
-#RandomPowerball
+# RandomPowerball
 RandomPowerball.py is a program that is posting to Twitter as @RandomBerryPi.  It uses Python to choose random lottery numbers for the Powerball lottery.  It then checks if the last numbers it picked were winners or not and posts to Twitter.
 
 This is an example tweet: **Last time I would have lost everything playing Powerball. Wah Wah! Here are some new picks : 12 36 48 11 33 (8). Have a random day!**
