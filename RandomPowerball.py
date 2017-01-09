@@ -21,21 +21,17 @@ def GetNewNumbers():
 		currentPicks.write('\n'.join(map(str, newPicks)))
 	return newPicks
 
-def GetPowerballWinnings(picks, winningNumbers):
+def GetPowerballOutcome(picks, winningNumbers):
+	# score = number of white ball matches with a +10 offset if the powerball was correct
 	winOptions = {
 		0:"lost everything", 1:"lost everything", 2:"lost everything", 3:"won $7", 4:"won $100", 5:"won $1,000,000", 
 		10:"won $4", 11:"won $4", 12:"won $7", 13:"won $100", 14:"won $50,000", 15:"won the GRAND PRIZE"
 	}
 	
-	score = len(set(picks[0:5]) & set(winningNumbers[0:5])) 
+	score = sum(1 for pick in picks[0:5] if pick in winningNumbers[0:5])
 	score += (10 if picks[5] == winningNumbers[5] else 0)
 
 	return winOptions[score]
-
-lastNumbers = GetLastNumbers()
-winningNumbers = GetWinningNumbers()
-winnings = GetPowerballWinnings(lastNumbers, winningNumbers)
-newNumbers = GetNewNumbers()
 
 APP_KEY='APP KEY HERE'
 APP_SECRET='APP SECRET HERE'
@@ -44,8 +40,13 @@ OAUTH_SECRET='OAUTH SECRET HERE'
 
 twitter = Twython(APP_KEY, APP_SECRET, OAUTH_KEY, OAUTH_SECRET)
 
-Status = "Last time I would have {} playing Powerball.".format(winnings)
-Status += " Wah Wah!" if winnings == "lost everything" else " Hurray!"
+lastNumbers = GetLastNumbers()
+winningNumbers = GetWinningNumbers()
+outcome = GetPowerballOutcome(lastNumbers, winningNumbers)
+newNumbers = GetNewNumbers()
+
+Status = "Last time I would have {} playing Powerball.".format(outcome)
+Status += " Wah Wah!" if outcome == "lost everything" else " Hurray!"
 Status += " Here are some new picks :"
 Status += " {} {} {} {} {} ({}).".format(newNumbers[0], newNumbers[1], newNumbers[2], newNumbers[3], newNumbers[4], newNumbers[5])
 Status += " Have a random day!"
