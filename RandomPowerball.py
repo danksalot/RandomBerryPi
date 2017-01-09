@@ -1,5 +1,4 @@
 import random
-import itertools
 import json
 import urllib2
 from twython import Twython
@@ -18,38 +17,20 @@ def GetNewNumbers():
 	filename = "currentPicks.txt"
 	newPicks = random.sample(range(1, 70), 5)
 	newPicks.append(random.randint(1, 26))
-	with open(filename, "w"):
-		pass
-	for pick in newPicks:
-		with open(filename, "a") as currentPicks:
-			currentPicks.write("{}{}".format(pick, "\n"))
+	with open(filename, "w") as currentPicks:
+		currentPicks.write('\n'.join(map(str, newPicks)))
 	return newPicks
 
 def GetPowerballWinnings(picks, winningNumbers):
-	whitePicks = set(itertools.islice(picks, 0, 5))
-	redPick = picks[5]
-	whiteWinners = set(itertools.islice(winningNumbers, 0, 5))
-	redWinner = winningNumbers[5]
-	matches = len(whitePicks & set(whiteWinners))
-	redMatch = redPick == redWinner
-	winnings = "lost everything"
-	if (matches == 5 and redMatch):
-		winnings = "won the GRAND PRIZE"
-	elif (matches == 5):
-		winnings = "won $1,000,000"
-	elif (matches == 4 and redMatch):
-		winnings = "won $50,000"
-	elif (matches == 4):
-		winnings = "won $100"
-	elif (matches == 3 and redMatch):
-		winnings = "won $100"
-	elif (matches == 3):
-		winnings = "won $7"
-	elif (matches == 2 and redMatch):
-		winnings = "won $7"
-	elif (redMatch):
-		winnings = "won $4"
-	return winnings
+	winOptions = {
+		0:"lost everything", 1:"lost everything", 2:"lost everything", 3:"won $7", 4:"won $100", 5:"won $1,000,000", 
+		10:"won $4", 11:"won $4", 12:"won $7", 13:"won $100", 14:"won $50,000", 15:"won the GRAND PRIZE"
+	}
+	
+	score = len(set(picks[0:5]) & set(winningNumbers[0:5])) 
+	score += (10 if picks[5] == winningNumbers[5] else 0)
+
+	return winOptions[score]
 
 lastNumbers = GetLastNumbers()
 winningNumbers = GetWinningNumbers()
@@ -64,10 +45,7 @@ OAUTH_SECRET='OAUTH SECRET HERE'
 twitter = Twython(APP_KEY, APP_SECRET, OAUTH_KEY, OAUTH_SECRET)
 
 Status = "Last time I would have {} playing Powerball.".format(winnings)
-if (winnings == "lost everything"):
-	Status += " Wah Wah!"
-else:	
-	Status += " Hurray!"
+Status += " Wah Wah!" if winnings == "lost everything" else " Hurray!"
 Status += " Here are some new picks :"
 Status += " {} {} {} {} {} ({}).".format(newNumbers[0], newNumbers[1], newNumbers[2], newNumbers[3], newNumbers[4], newNumbers[5])
 Status += " Have a random day!"
