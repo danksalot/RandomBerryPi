@@ -3,7 +3,7 @@ import json
 import urllib2
 from twython import Twython
 
-def GetLastNumbers():
+def GetLastPicks():
 	filename = "currentPicks.txt"
 	with open(filename) as f:
 		return map(int, f.readlines())
@@ -13,7 +13,7 @@ def GetWinningNumbers():
 	winningNumbers = json.loads(url.read())
 	return map(int, winningNumbers[0]["winning_numbers"].split(' '))
 
-def GetNewNumbers():
+def GetNewPicks():
 	filename = "currentPicks.txt"
 	newPicks = random.sample(range(1, 70), 5)
 	newPicks.append(random.randint(1, 26))
@@ -40,10 +40,10 @@ OAUTH_SECRET='OAUTH SECRET HERE'
 
 twitter = Twython(APP_KEY, APP_SECRET, OAUTH_KEY, OAUTH_SECRET)
 
-lastNumbers = GetLastNumbers()
+lastNumbers = GetLastPicks()
 winningNumbers = GetWinningNumbers()
 outcome = GetPowerballOutcome(lastNumbers, winningNumbers)
-newNumbers = GetNewNumbers()
+newNumbers = GetNewPicks()
 
 Status = "Last time I would have {} playing Powerball.".format(outcome)
 Status += " Wah Wah!" if outcome == "lost everything" else " Hurray!"
