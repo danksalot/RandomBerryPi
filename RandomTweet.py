@@ -2,6 +2,24 @@ from twython import Twython
 import random
 import time
 
+def getTimeMessage(hours, minutes):
+    message = ""
+    if hours > 0:
+    	message += `hours`
+    	if hours == 1:
+    		message += ' hour'
+    	else:
+    		message += ' hours'
+    	if minutes > 0:
+    		message += ' and '
+    if minutes > 0:
+    	message += `minutes`
+    	if minutes == 1:
+    		message += ' minute'
+    	else:
+    		message += ' minutes'
+    return message
+
 APP_KEY='APP KEY HERE'
 APP_SECRET='APP SECRET HERE'
 OAUTH_KEY='OAUTH KEY HERE'
@@ -22,20 +40,7 @@ while True:
 	Status += ' and a virtual coin landed on '
 	Status += random.choice(sides)
 	Status += '. Next update in '
-	if hours > 0:
-		Status += `hours`
-		if hours == 1:
-			Status += ' hour'
-		else:
-			Status += ' hours'
-		if minutes > 0:
-			Status += ' and '
-	if minutes > 0:
-		Status += `minutes`
-		if minutes == 1:
-			Status += ' minute'
-		else:
-			Status += ' minutes'
+	Status += getTimeMessage(hours, minutes)
 	Status += '. Have a random day!'
 
 	print Status
