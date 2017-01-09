@@ -9,19 +9,15 @@ def getDelayString():
 	minutes = (delay % 3600) / 60
 	message = ""
 	if hours > 0:
-		message += `hours`
-		if hours == 1:
-			message += ' hour'
-		else:
-			message += ' hours'
-		if minutes > 0:
-			message += ' and '
+		message += `hours` + ' hour'
+		if hours > 1:
+			message += 's'
+	if hours > 0 and minutes > 0:
+		message += ' and '
 	if minutes > 0:
-		message += `minutes`
-		if minutes == 1:
-			message += ' minute'
-		else:
-			message += ' minutes'
+		message += `minutes` + ' minute'
+		if minutes > 1:
+			message += 's'
 	return message
 
 APP_KEY='APP KEY HERE'
