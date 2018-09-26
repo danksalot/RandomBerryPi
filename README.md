@@ -1,4 +1,4 @@
-# RandomBerryPi 
+# RandomBerryPi
 My [Raspberry Pi](https://www.raspberrypi.org/) likes to pick (pseudo)random things, so I've built a couple of programs that allow it to do just that.  I setup the Twitter account [@RandomBerryPi](https://twitter.com/RandomBerryPi) so that it can share everything it does with the world.  
 
 I am using the [Twython](https://github.com/ryanmcgrath/twython) Python library to post to Twitter.
